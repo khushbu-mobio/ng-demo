@@ -30,9 +30,8 @@ export class AuthenticationService {
         return user;
       }));
   }
-
+ /** remove user details from localstorage when logout() call  */
   logout() {
-    /** remove user details from localstorage when logout() call  */
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
