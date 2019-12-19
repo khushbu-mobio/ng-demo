@@ -1,12 +1,22 @@
-
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <button mat-button  routerLink="">Home</button>
-        <button mat-button  routerLink="/login">Login</button>
-        <button mat-button routerLink="/reg">Registration</button>
+        <button mat-button routerLink="">About US</button>
+        <div *ngIf="!currentUser"><button mat-button routerLink="login">Login</button></div>
+        <div *ngIf="currentUser">
+            <!-- display button if the user login -->
+            <button mat-button routerLink="home">Home</button>
+            <button mat-button (click)="logout()">Logout</button>
+        </div>
     </mat-toolbar-row>
-      
 </mat-toolbar>
 
 <!-- <app-login></app-login> -->
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+            <mat-card-footer>
+                    <button mat-button>Contact as: kshah@gmail.com</button>
+            </mat-card-footer>
+       
+    </mat-toolbar-row>
+</mat-toolbar>

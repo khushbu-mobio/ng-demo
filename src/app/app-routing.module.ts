@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGurd } from './helper/auth.guard';
 
 
 const routes: Routes = [
-  { path:'', component: HomeComponent},
-  { path:'user', component: UserComponent },
-  { path:'login', component: LoginComponent},
-  { path:'reg', component: RegistrationComponent}
+  { path: 'home', component: HomeComponent, canActivate: [AuthGurd] },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

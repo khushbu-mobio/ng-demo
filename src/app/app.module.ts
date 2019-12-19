@@ -1,32 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
-import { FormsModule } from '@angular/forms';
+
+import { ReactiveFormsModule } from '@angular/forms';
 import { CustomMaterialModule } from './core/material.module';
-import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
+import { HTTP_INTERCEPTORS,HttpClientModule } from '@angular/common/http';
+import { BasicAuthInterceptor } from './helper/basic-auth.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { BackendProvider } from './helper/backendInterceptor';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent,
-    RegistrationComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     CustomMaterialModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    MatPasswordStrengthModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    BackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
