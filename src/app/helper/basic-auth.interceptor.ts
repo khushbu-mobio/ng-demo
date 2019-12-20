@@ -7,9 +7,11 @@ import { Observable } from 'rxjs';
 export class BasicAuthInterceptor implements HttpInterceptor {
     
     constructor(private authenticationService: AuthenticationService) { }
-
+    /** 
+     * add authorization header with basic auth credentials
+     * @author khushbu shah  */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        /** add authorization header with basic auth credentials  */
+       
         const currentUser = this.authenticationService.CurrentUserValue;
         if (currentUser && currentUser.authdata) {
             request = request.clone({
