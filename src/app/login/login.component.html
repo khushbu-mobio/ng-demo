@@ -2,13 +2,13 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-card-title> login</mat-card-title>
         <mat-form-field appearance="outline" style="width: 25%">
-            <input matInput placeholder="Username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <input matInput placeholder="Email" value="eve.holt@reqres.in" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
         </mat-form-field>
-        <div *ngIf="submitted && f.username.errors">
-            <mat-error *ngIf="f.username.errors.required">username is required</mat-error>
+        <div *ngIf="submitted && f.email.errors">
+            <mat-error *ngIf="f.email.errors.required">email is required</mat-error>
         </div><br>
         <mat-form-field appearance="outline" style="width: 25%">
-            <input matInput placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            <input matInput placeholder="Password" value="cityslicka" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                 [type]="toggleVisbility.type">
             <mat-pass-toggle-visibility #toggleVisbility matSuffix></mat-pass-toggle-visibility>
         </mat-form-field>
